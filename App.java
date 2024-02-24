@@ -4,59 +4,62 @@ import java.util.Scanner;
 public class App {
 
     static Scanner input = new Scanner(System.in);
-    static ArrayList<Estudiante> estudiantes = new ArrayList<>();
+    static ArrayList<Student> students = new ArrayList<>();
 
-    public static ArrayList<Estudiante> readestudiante() {
-        String continuar = "si";
-        Estudiante estudiante = new Estudiante();
+    public static ArrayList<Student> readstudent() {
+        String keep = "si";
         do {
+            Student student = new Student();
+
             System.out.println("Ingrese la informacion del estudiante");
+
             System.out.print("Identificacion: ");
-            estudiante.setIdentificacion(input.next());
+            student.setIdentity(input.next());
 
             System.out.print("Nombre: ");
-            estudiante.setNombre(input.next());
+            student.setName(input.next());
 
-            System.out.print("Email: ");
-            estudiante.setEmail(input.next());
+            System.out.print("Correo: ");
+            student.setEmail(input.next());
 
-            estudiantes.add(estudiante);
+            students.add(student);
 
             System.out.print("¿Desea agregar otro estudiante? (si/no): ");
-            continuar = input.next();
-        } while (continuar.equals("si"));
+            keep = input.next();
+        } while (keep.equals("si"));
 
-        return estudiantes;
+        return students;
     }
 
-    public static void getestudiantes(ArrayList<Estudiante> estudiantes) {
-        for (int i = 0; i < estudiantes.size(); i++) {
+    public static void getstudents(ArrayList<Student> students) {
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println("__________");
             System.out.println("Estudiante " + (i + 1));
-            System.out.println(estudiantes.get(i).getIdentificacion());
-            System.out.println(estudiantes.get(i).getNombre());
-            System.out.println(estudiantes.get(i).getEmail());
+            System.out.println(students.get(i).getIdentity());
+            System.out.println(students.get(i).getName());
+            System.out.println(students.get(i).getEmail());
         }
     }
 
-    public static void getEstudianteById(String id, ArrayList<Estudiante> estudiantes) {
-        for (int i = 0; i < estudiantes.size(); i++) {
-            if (estudiantes.get(i).getIdentificacion().equals(id)) {
+    public static void getStudentById(String id, ArrayList<Student> students) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getIdentity().equals(id)) {
                 System.out.println(
-                        "Se encontro al estudiante con identificacion: " + estudiantes.get(i).getIdentificacion());
-                System.out.println("Nombre: " + estudiantes.get(i).getNombre());
-                System.out.println("Correo: " + estudiantes.get(i).getEmail());
+                        "Se encontro al estudiante con identificacion: " + students.get(i).getIdentity());
+                System.out.println("Nombre: " + students.get(i).getName());
+                System.out.println("Correo: " + students.get(i).getEmail());
             }
         }
     }
 
-    public static void updateEstudiante(String id, ArrayList<Estudiante> estudiantes) {
-        for (int i = 0; i < estudiantes.size(); i++) {
-            if (estudiantes.get(i).getIdentificacion().equals(id)) {
-                System.out.print("Nuevo Nombre: ");
-                estudiantes.get(i).setNombre(input.next());
+    public static void updateStudent(String id, ArrayList<Student> students) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getIdentity().equals(id)) {
+                System.out.print("Nuevo nombre: ");
+                students.get(i).setName(input.next());
 
-                System.out.print("Nuevo Email: ");
-                estudiantes.get(i).setEmail(input.next());
+                System.out.print("Nuevo correo: ");
+                students.get(i).setEmail(input.next());
 
                 System.out.println("Estudiante actualizado!");
             }
@@ -64,10 +67,9 @@ public class App {
     }
 
     public static void main(String[] args) {
-        // ArrayList<Estudiante> arrayList = new ArrayList<>();
         int option = 0;
         do {
-            System.out.println("1. Ingresar estudiantes: ");
+            System.out.println("1. Ingresar estudiante: ");
             System.out.println("2. Mostrar los estudiantes: ");
             System.out.println("3. Buscar un estudiante: ");
             System.out.println("4. Actualizar un estudiante: ");
@@ -75,16 +77,16 @@ public class App {
             System.out.print("Elija una opcion (1-4): ");
             option = input.nextInt();
             if (option == 1) {
-                estudiantes = readestudiante();
+                students = readstudent();
             } else if (option == 2) {
-                getestudiantes(estudiantes);
+                getstudents(students);
             } else if (option == 3) {
                 System.out.print("Ingrese la identificacion del estudiante: ");
-                getEstudianteById(input.next(), estudiantes);
+                getStudentById(input.next(), students);
             } else if (option == 4) {
                 System.out.print("Ingrese la identificacion del estudiante: ");
                 String id = input.next();
-                updateEstudiante(id, estudiantes);
+                updateStudent(id, students);
             } else {
                 System.out.println("Hasta luego!");
             }
