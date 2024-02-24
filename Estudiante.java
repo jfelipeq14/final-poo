@@ -1,5 +1,4 @@
 public class Estudiante {
-
     private String identificacion;
     private String nombre;
     private String email;
@@ -28,4 +27,9 @@ public class Estudiante {
         this.email = email;
     }
 
+    // public Estudiante(String identificacion, String nombre, String email) {
+    // this.identificacion = identificacion;
+    // this.nombre = nombre;
+    // this.email = email;
+    // }
 }
